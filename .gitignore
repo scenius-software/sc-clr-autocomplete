@@ -46,3 +46,5 @@ testem.log
 Thumbs.db
 
 projects/sc-clr-autocomplete/node_modules/
+
+deploy.sh
