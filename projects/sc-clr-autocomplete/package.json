@@ -1,0 +1,11 @@
+{
+  "name": "sc-clr-autocomplete",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "@clr/angular": "^2.3.4",
+    "@clr/icons": "^2.3.4",
+    "@clr/ui": "^2.3.4"
+  }
+}

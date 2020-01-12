@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "sc-clr-autocomplete": [
+        "dist/sc-clr-autocomplete"
+      ],
+      "sc-clr-autocomplete/*": [
+        "dist/sc-clr-autocomplete/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -1,0 +1,32 @@
+.sc-clr-autocomplete-container {
+  position: relative;
+  display: block;
+}
+
+input {
+  width: 100%;
+}
+
+.sc-clr-autocomplete-toggle-button {
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+
+  &:hover {
+    color: rgb(0, 136, 194);;
+  }
+}
+
+.toggle-active {
+  color: rgb(0, 136, 194);
+}
+
+.sc-clr-autocomplete-clear-button {
+  cursor: pointer;
+  position: absolute;
+  right: calc(3*12px);
+
+  &:hover {
+    color: #C92100;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    Combobox functionality
+  </div>
+  <div class="card-block">
+    <div class="card-text">
+      <h4>Explanation</h4>
+      <p>Demonstrates the basic functionality of the autocomplete input, using a static string array
+        initializer.</p>
+      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticTypescript"></code></pre>
+      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticHtml"></code></pre>
+
+      <h4>Demo</h4>
+      <form clrForm autocomplete="off" [formGroup]="form">
+        <sc-clr-autocomplete [readOnly]="true" [autocompleteMode]="autocompleteModes.Select"
+                             [labelText]="'Autocomplete'" [autocompleteModel]="model"
+                             formControlName="autocomplete"></sc-clr-autocomplete>
+      </form>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-link" (click)="sendForm()">Test Form</button>
+  </div>
+</div>
