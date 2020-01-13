@@ -127,7 +127,9 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
   /** When user presses escape, resolve the popover */
   @HostListener('document:keydown.enter', ['$event']) onEnter(event: KeyboardEvent) {
     if (this._popoverRef) {
-      this._popoverRef.instance.resolveResult();
+      if (this._popoverRef.instance.searchResults.length > 0) {
+        this._popoverRef.instance.resolveResult();
+      }
       this._popoverRef.instance.clickOut();
     }
   }
