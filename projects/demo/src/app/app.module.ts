@@ -6,18 +6,14 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  HighlightModule,
-  HIGHLIGHT_OPTIONS,
-  HighlightOptions
-} from 'ngx-highlightjs';
+import { HIGHLIGHT_OPTIONS, HighlightModule, HighlightOptions } from 'ngx-highlightjs';
 import { StaticInputComponent } from 'projects/demo/src/app/examples/static-input/input/static-input.component';
 import { HttpInputComponent } from 'projects/demo/src/app/examples/http-input/http-input.component';
 import { ObservableInputComponent } from 'projects/demo/src/app/examples/observable-input/observable-input.component';
 import { ObjectOutputComponent } from 'projects/demo/src/app/examples/object-output/object-output.component';
 import { StaticSelectComponent } from 'projects/demo/src/app/examples/static-input/select/static-select/static-select.component';
 import { ScClrAutocompleteModule } from 'projects/sc-clr-autocomplete/src/lib/sc-clr-autocomplete.module';
-import { ClarityIcons } from '@clr/icons';
+import { InputResolveComponent } from 'projects/demo/src/app/examples/static-input/input-resolve/input-resolve.component';
 
 /**
  * Import specific languages to avoid importing everything
@@ -30,6 +26,7 @@ export function getHighlightLanguages() {
     xml: () => import('highlight.js/lib/languages/xml'),
   };
 }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +35,7 @@ export function getHighlightLanguages() {
     ObservableInputComponent,
     ObjectOutputComponent,
     StaticSelectComponent,
+    InputResolveComponent,
   ],
   imports: [
     BrowserModule,

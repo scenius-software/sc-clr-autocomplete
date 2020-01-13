@@ -5,7 +5,7 @@
       <span>{{term.preString}}</span><span
       style="font-weight: bold">{{term.searchMatch}}</span><span>{{term.postMatchString}}</span>
     </div>
-    <div class="sc-clr-autocomplete-popover-no-results" *ngIf="searchResults.length === 0">No results were found</div>
+    <div *ngIf="searchResults.length === 0" class="sc-clr-autocomplete-popover-no-results">No results were found</div>
   </div>
   <div *ngIf="busyLoading" class="popover-inner popover-loading">
     <clr-spinner></clr-spinner>

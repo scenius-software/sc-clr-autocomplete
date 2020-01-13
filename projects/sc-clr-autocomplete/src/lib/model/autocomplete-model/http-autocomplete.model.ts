@@ -5,6 +5,7 @@ import { ScQueryHelpers } from 'projects/sc-clr-autocomplete/src/lib/helpers/qeu
 
 export class HttpAutocompleteModel<T> extends ScAutocompleteModel<T> {
   private _requestMade = false;
+
   constructor(private _httpClient: HttpClient, private _url: string, private _isLazy = false,
               _displaySelector: ((T1: T) => string) = ((T1) => T1.toString())) {
     super([], _displaySelector);

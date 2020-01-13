@@ -4,7 +4,6 @@ import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/
 // tslint:disable-next-line:max-line-length
 import { ScClrAutocompletePopoverComponent } from 'projects/sc-clr-autocomplete/src/lib/components/popover/sc-clr-autocomplete-popover.component';
 import { ScClrAutocompletePopoverService } from 'projects/sc-clr-autocomplete/src/lib/services/sc-clr-autocomplete-popover.service';
-import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/sc-clr-autocomplete.mode';
 import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
 
 /**
@@ -24,14 +23,6 @@ import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/
   ]
 })
 export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
-  /** Whether the user can input text into the input or not. */
-  @Input() readOnly = false;
-
-  /** The number of characters to be input before opening the auto-complete dialog */
-  @Input() characterActivationTrigger = 1;
-
-  @Output() selectedItem: T | undefined;
-
   /**
    * Returns whether or not a valid value is selected from the auto-complete model.
    */
@@ -60,6 +51,15 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
     return this._popoverRef !== undefined;
   }
 
+  /** Whether the user can input text into the input or not. */
+  @Input() readOnly = false;
+  /** The number of characters to be input before opening the auto-complete dialog */
+  @Input() characterActivationTrigger = 1;
+  /**
+   * Whether the auto-complete should always select the closest search result.
+   */
+  @Input() resolveToItemInList = false;
+  @Output() selectedItem: T | undefined;
   @Input() autocompleteModel: ScAutocompleteModel<T>;
   @Input() labelText = '';
   /**
@@ -67,7 +67,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
    */
   private _popoverRef: ComponentRef<ScClrAutocompletePopoverComponent<T>>;
   private _freeInputValue = '';
-  @Input() autocompleteMode: ScClrAutocompleteMode = ScClrAutocompleteMode.Input;
+
   /**
    * ViewContainerRef to the popover element used for showing the auto-complete pop-over container.
    */
@@ -110,9 +110,25 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
     }
   }
 
-  @HostListener('click', ['$event.target']) onClick(event) {
-    if (this.autocompleteMode === ScClrAutocompleteMode.Select && !this._popoverRef) {
+  /** When the user focuses the input element, open the popover if necessary */
+  onFocus() {
+    if (this.freeInputValue.length >= this.characterActivationTrigger && !this._popoverRef) {
       this.openPopover();
+    }
+  }
+
+  /** When user presses escape, close the popover */
+  @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
+    if (this._popoverRef) {
+      this.closePopover();
+    }
+  }
+
+  /** When user presses escape, resolve the popover */
+  @HostListener('document:keydown.enter', ['$event']) onEnter(event: KeyboardEvent) {
+    if (this._popoverRef) {
+      this._popoverRef.instance.resolveResult();
+      this._popoverRef.instance.clickOut();
     }
   }
 
@@ -153,9 +169,9 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
     });
 
     // Set the search-space (auto-complete model) to the one provided.
-    this._popoverRef.instance.resolveToElementInList = this.autocompleteMode !== ScClrAutocompleteMode.Input;
+    this._popoverRef.instance.resolveToElementInList = this.resolveToItemInList;
     this._popoverRef.instance.autocompleteModel = this.autocompleteModel;
-    this._popoverRef.instance.searchTerm = (this.autocompleteMode !== ScClrAutocompleteMode.Input) ? '' : this._freeInputValue;
+    this._popoverRef.instance.searchTerm = this._freeInputValue;
 
     // Set focus back on the input element
     this._inputElementRef.nativeElement.focus();
@@ -169,10 +185,12 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
     if (this.readOnly) {
       this._inputElementRef.nativeElement.value = '';
       this.freeInputValue = '';
-    } else {
-      this._inputElementRef.nativeElement.value = input;
-      this.freeInputValue = input;
+      this.onChange(this.freeInputValue);
+      this.onTouched();
+      return;
     }
+    this._inputElementRef.nativeElement.value = input.replace(/^\s*/g, '');
+    this.freeInputValue = input.replace(/^\s*/g, '');
     this.onChange(this.freeInputValue);
     this.onTouched();
   }
@@ -183,7 +201,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
    */
   updatePopover() {
     if (!this._popoverRef
-      && ((this.freeInputValue.length >= this.characterActivationTrigger) || this.autocompleteMode === ScClrAutocompleteMode.Select)) {
+      && ((this.freeInputValue.length >= this.characterActivationTrigger) || this.resolveToItemInList)) {
       // If we don't have a reference to an active pop-over, and the user has entered at least one character,
       // toggle the pop-over.
       this.openPopover();

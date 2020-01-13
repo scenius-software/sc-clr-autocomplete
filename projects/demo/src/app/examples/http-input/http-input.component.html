@@ -6,18 +6,26 @@
     <div class="card-text">
       <h4>Explanation</h4>
       <p>Demonstrates the ability to use a URL to parse an array of items from a REST API. In this example,
-        the call is used: <a href="https://restcountries.eu/rest/v2/all" target="_blank">https://restcountries.eu/rest/v2/all</a></p>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticTypescript"></code></pre>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticHtml"></code></pre>
+        the call is used: <a href="https://restcountries.eu/rest/v2/all" target="_blank">https://restcountries.eu/rest/v2/all</a>.
+        For this we will make use of the <code>HttpAutocompleteModel</code>, which we provide with a <code>HttpClient</code>
+        and an <code>url</code> to make a request on our behalf. We also provide a custom <code>displaySelector</code> in order
+        to tell the component how to render the returned objects. This model will show a loading spinner while the HTTP call
+        has not yet resolved.
+      </p>
+      <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
       <h4>Demo</h4>
-      <p>HTTP Call done: <clr-spinner clrInline *ngIf="!modelReady" style="margin-right: 0.5em"></clr-spinner> <span style="font-weight: bold">{{modelReady ? 'Yes' : 'Not yet'}}</span></p>
-      <form clrForm autocomplete="off" [formGroup]="form">
-        <sc-clr-autocomplete [labelText]="'Autocomplete'" [autocompleteModel]="_httpModel" formControlName="autocomplete"></sc-clr-autocomplete>
+      <p>HTTP Call done:
+        <clr-spinner *ngIf="!modelReady" clrInline style="margin-right: 0.5em"></clr-spinner>
+        <span style="font-weight: bold">{{modelReady ? 'Yes' : 'Not yet'}}</span></p>
+      <form [formGroup]="form" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="_httpModel" [labelText]="'Autocomplete'"
+                             [resolveToItemInList]="true" formControlName="autocomplete"></sc-clr-autocomplete>
       </form>
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link" (click)="sendForm()">Test Form</button>
-    <button class="btn btn-sm btn-link" (click)="resetHttpModel()">Reset HTTP Call</button>
+    <button (click)="sendForm()" class="btn btn-sm btn-link">Test Form</button>
+    <button (click)="resetHttpModel()" class="btn btn-sm btn-link">Reset HTTP Call</button>
   </div>
 </div>

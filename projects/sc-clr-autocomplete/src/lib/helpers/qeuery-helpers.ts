@@ -5,7 +5,7 @@ export class ScQueryHelpers {
   private constructor() {}
 
   static queryModel<T>(model: ScAutocompleteModel<any>, queryTerm: string): Array<ClrAutocompleteItem<T>> {
-    const searchExp = queryTerm.length > 0 ? new RegExp('^(.*)(' + escape(queryTerm) + ')(.*)$', 'i')
+    const searchExp = queryTerm.length > 0 ? new RegExp('^(.*)(' + ScQueryHelpers.escape(queryTerm) + ')(.*)$', 'i')
       : new RegExp('^(.*)$', 'i');
     return model.model.map(x => {
       const match = searchExp.exec(model.displaySelector(x));

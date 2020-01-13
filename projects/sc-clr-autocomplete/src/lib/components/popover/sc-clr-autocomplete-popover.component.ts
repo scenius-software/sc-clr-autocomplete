@@ -45,40 +45,31 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
     }
   }
 
-  @Input() resolveToElementInList = true;
+  resolveToElementInList = true;
   /** Event that will be fired whenever the auto-complete pop-over is closed. */
   closed = new EventEmitter<void>();
 
   /** Event fired whenever the selected value auto-complete box changes. */
   valueUpdated = new EventEmitter<ClrAutocompleteItem<T>>();
-
-  /** The current search term */
-  private _searchTerm = '';
-
-  /** The current auto-complete model. This dictates the list that gets shown to users, the way it is retrieved & the way it is queried. */
-  private _autocompleteModel: ScAutocompleteModel<T>;
-
-  /** The parent component of the popover. This parent component will be the target of the auto-complete box. */
-  private _parentComponent: ElementRef;
-
   /** The results of the last query. */
   searchResults: Array<ClrAutocompleteItem<T>> = [];
-
   /** The width of the pop-over. */
   popoverWidth = 5;
-
   /** The amount of pixels this popover is positioned from the left of the screen. */
   popoverOffsetLeft = 0;
-
   /** The amount of pixels this popover is positioned from the top of the screen. */
   popoverOffsetTop = 0;
-
   /**
    * Indicates whether or not the pop-over is able to display the results of the search-query.
    * When set to true, the pop-over will display a loading spinner.
    */
   busyLoading = true;
-
+  /** The current search term */
+  private _searchTerm = '';
+  /** The current auto-complete model. This dictates the list that gets shown to users, the way it is retrieved & the way it is queried. */
+  private _autocompleteModel: ScAutocompleteModel<T>;
+  /** The parent component of the popover. This parent component will be the target of the auto-complete box. */
+  private _parentComponent: ElementRef;
   /** Keeps track of whether the last click was made inside the pop-over. */
   private _clickInside = false;
 
@@ -135,15 +126,6 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
   }
 
   /**
-   * Re-calculate the position & dimensions of the pop-over.
-   */
-  private reflowPopover() {
-    this.popoverOffsetLeft = this._parentComponent.nativeElement.offsetLeft;
-    this.popoverOffsetTop = (this._parentComponent.nativeElement.offsetTop + this._parentComponent.nativeElement.clientHeight);
-    this.popoverWidth = this._parentComponent.nativeElement.clientWidth;
-  }
-
-  /**
    * Query the model and render the results
    */
   async updateSearch() {
@@ -154,12 +136,21 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
    * Clamp the search input to the nearest result, or blank if there is no match. This functionality is used to
    * recreate a input element
    */
-  private resolveResult() {
+  resolveResult() {
     if (this._searchTerm.length === 0) { return undefined; }
     const selectedValue = this.searchResults.length > 0 ? this.searchResults[0] : undefined;
     if (selectedValue) {
       this._searchTerm = selectedValue.displayData;
     }
     this.valueUpdated.emit(selectedValue);
+  }
+
+  /**
+   * Re-calculate the position & dimensions of the pop-over.
+   */
+  private reflowPopover() {
+    this.popoverOffsetLeft = this._parentComponent.nativeElement.offsetLeft;
+    this.popoverOffsetTop = (this._parentComponent.nativeElement.offsetTop + this._parentComponent.nativeElement.clientHeight);
+    this.popoverWidth = this._parentComponent.nativeElement.clientWidth;
   }
 }

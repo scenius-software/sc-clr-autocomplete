@@ -5,19 +5,23 @@
   <div class="card-block">
     <div class="card-text">
       <h4>Explanation</h4>
-      <p>Apart from strings, it's also possible to bind and display objects to the autocomplete component.</p>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticTypescript"></code></pre>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticHtml"></code></pre>
+      <p>Apart from strings, it's also possible to bind and display objects to the autocomplete component. You can
+      tell the autocomplete component how to render your component by providing a <code>displaySelector</code> which maps
+      your type <code>T</code> to <code>string</code></p>
+      <p><strong>Note</strong> Equality comparison is currently done by the displayed string value of your type.
+      Ensure there are no duplicate entries in your model. A later update will provide a way to implement custom
+      equality operators.</p>
+      <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
 
       <h4>Demo</h4>
-      <form clrForm autocomplete="off" [formGroup]="form">
-        <sc-clr-autocomplete [readOnly]="true" [autocompleteMode]="autocompleteModes.Select"
-                             [labelText]="'Autocomplete'" [autocompleteModel]="model"
+      <form [formGroup]="form" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="model" [labelText]="'Autocomplete'" [resolveToItemInList]="true"
                              formControlName="autocomplete"></sc-clr-autocomplete>
       </form>
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link" (click)="sendForm()">Test Form</button>
+    <button (click)="sendForm()" class="btn btn-sm btn-link">Test Form</button>
   </div>
 </div>

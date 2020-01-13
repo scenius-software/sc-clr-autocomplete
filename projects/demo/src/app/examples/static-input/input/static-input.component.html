@@ -6,19 +6,25 @@
     <div class="card-text">
       <h4>Explanation</h4>
       <p>Demonstrates the basic functionality of the autocomplete input, using a static string array
-        initializer.</p>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticTypescript"></code></pre>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticHtml"></code></pre>
+        initializer. As such, the returned value will be the free input value of the user.</p>
+
+      <p>The snippets below demonstrate the simplest way of using the autocomplete component. The component works
+      by providing it a <code>model</code> which is a fancy term for the data source that will be queried based on
+      the user input. There are various models available, all of them demonstrated on this page. This example demonstrates
+      the simplest model, the <code>StaticAutocompleteModel&lt;string&gt;</code></p>
+
+      <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
 
       <h4>Demo</h4>
-      <form clrForm autocomplete="off" [formGroup]="form">
-        <sc-clr-autocomplete [labelText]="'Autocomplete'" [autocompleteModel]="model"
+      <form [formGroup]="form" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="model" [labelText]="'Autocomplete'"
                              formControlName="autocomplete"></sc-clr-autocomplete>
       </form>
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link" (click)="sendForm()">Test Form</button>
+    <button (click)="sendForm()" class="btn btn-sm btn-link">Test Form</button>
   </div>
 </div>
 

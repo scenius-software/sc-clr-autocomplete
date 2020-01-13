@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/observable-autocomplete.model';
 import { FormSender } from 'projects/demo/src/app/app.component';
-import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/sc-clr-autocomplete.mode';
 import { of } from 'rxjs';
 import { delay, finalize } from 'rxjs/operators';
 
@@ -20,7 +19,8 @@ export class ObservableInputComponent extends FormSender implements OnInit {
     '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel"\n' +
     '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
     '</form>\n';
-  private _demoModel = [ 'Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity' ];
+  private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
+
   constructor() {
     super();
     this.resetObservableModelTest();

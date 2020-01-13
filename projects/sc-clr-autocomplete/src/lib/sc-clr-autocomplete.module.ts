@@ -16,4 +16,4 @@ import { ClarityModule } from '@clr/angular';
   ],
   entryComponents: [ScClrAutocompletePopoverComponent]
 })
-export class ScClrAutocompleteModule { }
+export class ScClrAutocompleteModule {}

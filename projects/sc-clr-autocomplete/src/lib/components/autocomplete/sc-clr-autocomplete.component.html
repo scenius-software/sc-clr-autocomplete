@@ -1,10 +1,18 @@
 <div class="sc-clr-autocomplete-container">
-  <div class="sc-clr-autocomplete-toggle-button toggle-active" [style.toggleActive]="popoverOpen" *ngIf="popoverOpen" (click)="closePopover()"><clr-icon shape="circle-arrow"></clr-icon></div>
-  <div class="sc-clr-autocomplete-clear-button" (click)="clearInput()"><clr-icon shape="times-circle"></clr-icon></div>
-  <div class="sc-clr-autocomplete-toggle-button" *ngIf="!popoverOpen" (click)="openPopover()"><clr-icon shape="circle-arrow"></clr-icon></div>
+  <div (click)="closePopover()" *ngIf="popoverOpen" [style.toggleActive]="popoverOpen"
+       class="sc-clr-autocomplete-toggle-button toggle-active">
+    <clr-icon shape="circle-arrow"></clr-icon>
+  </div>
+  <div (click)="clearInput()" class="sc-clr-autocomplete-clear-button">
+    <clr-icon shape="times-circle"></clr-icon>
+  </div>
+  <div (click)="openPopover()" *ngIf="!popoverOpen" class="sc-clr-autocomplete-toggle-button">
+    <clr-icon shape="circle-arrow"></clr-icon>
+  </div>
   <clr-input-container #popover>
     <label #label>{{ labelText }}</label>
-    <input #inputElement (input)="updateInput($event.target.value)" clrInput placeholder="You complete me!"/>
+    <input #inputElement (input)="updateInput($event.target.value)" (keydown.tab)="closePopover()" (mouseup)="onFocus()"
+           clrInput placeholder="You complete me!"/>
   </clr-input-container>
 </div>
 

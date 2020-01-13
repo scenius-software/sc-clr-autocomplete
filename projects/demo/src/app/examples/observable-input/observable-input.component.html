@@ -8,19 +8,23 @@
       <p>Demonstrates the ability to show a loading spinner while waiting for an observable to return
         an array of strings to use as our autocomplete model. The demo below has an observable that delays
         for 5 seconds before returning its list of strings. During this period, a loading spinner will be
-        displayed.</p>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticTypescript"></code></pre>
-      <pre><code [lineNumbers]="true" [highlight]="exampleCodeStaticHtml"></code></pre>
+        displayed. For this, we'll be using the <code>ObservableAutocompleteModel&lt;T&gt;</code> object which expects
+        an observable that returns T. This model will show a loading spinner while the observable hasn't completed yet.
+      </p>
+      <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
       <h4>Demo</h4>
-      <p>Callback done: <clr-spinner clrInline *ngIf="!observableDone" style="margin-right: 0.5em"></clr-spinner> <span style="font-weight: bold">{{observableDone ? 'Yes' : 'Not yet'}}</span></p>
-      <form clrForm autocomplete="off" [formGroup]="form">
-        <sc-clr-autocomplete [labelText]="'Autocomplete'" [autocompleteModel]="observableModel"
+      <p>Callback done:
+        <clr-spinner *ngIf="!observableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
+        <span style="font-weight: bold">{{observableDone ? 'Yes' : 'Not yet'}}</span></p>
+      <form [formGroup]="form" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="observableModel" [labelText]="'Autocomplete'"
                              formControlName="autocomplete"></sc-clr-autocomplete>
       </form>
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link" (click)="sendForm()">Test Form</button>
-    <button class="btn btn-sm btn-link" (click)="resetObservableModelTest()">Reset Observable</button>
+    <button (click)="sendForm()" class="btn btn-sm btn-link">Test Form</button>
+    <button (click)="resetObservableModelTest()" class="btn btn-sm btn-link">Reset Observable</button>
   </div>
 </div>
