@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build-library:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.x'
+      - name: Build library
+        run: |
+          npm install
+          ng build --project sc-clr-autocomplete        
+  
+  publish-npm:
+    needs: build-library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
+      - run: |
+          npm install
+          npm build --project sc-clr-autocomplete
+          npm publish ./dist/sc-clr-autocomplete
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
