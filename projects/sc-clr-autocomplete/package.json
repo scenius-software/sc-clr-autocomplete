@@ -1,11 +1,28 @@
 {
   "name": "sc-clr-autocomplete",
   "version": "0.0.1",
+  "description": "Autocomplete Component for Clarity",
+  "author": "Scenius",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scenius-software/sc-clr-autocomplete.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scenius-software/sc-clr-autocomplete/issues"
+  },
+  "homepage": "https://scenius-software.github.io/sc-clr-autocomplete/",
+  "keywords": [
+    "angular",
+    "component",
+    "autocomplete",
+    "clarity"
+  ],
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
     "@clr/angular": "^2.3.4",
     "@clr/icons": "^2.3.4",
     "@clr/ui": "^2.3.4"
-  }
+  },
+  "license": "MIT"
 }

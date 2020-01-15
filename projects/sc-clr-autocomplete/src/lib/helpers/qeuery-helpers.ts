@@ -26,6 +26,7 @@ export class ScQueryHelpers {
    * @param val input to sanitize.
    */
   private static escape(val: string): string {
-    return val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    const escapeExp = new RegExp('[.*+?^${}()|[\\]\\\\]', 'g');
+    return val.replace(escapeExp, '\\$&'); // $& means the whole matched string
   }
 }
