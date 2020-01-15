@@ -18,7 +18,7 @@ jobs:
       - name: Build library
         run: |
           npm ci
-          npm ci -g @angular/cli
+          npm install -g @angular/cli
           ng build --project sc-clr-autocomplete        
   
   publish-npm:
@@ -32,7 +32,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: |
           npm ci
-          npm ci -g @angular/cli
+          npm install -g @angular/cli
           npm build --project sc-clr-autocomplete
           npm publish ./dist/sc-clr-autocomplete
         env:
