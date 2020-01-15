@@ -17,7 +17,7 @@ jobs:
           node-version: '12.x'
       - name: Build library
         run: |
-          npm install
+          npm ci
           ng build --project sc-clr-autocomplete        
   
   publish-npm:
@@ -30,7 +30,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org
       - run: |
-          npm install
+          npm ci
           npm build --project sc-clr-autocomplete
           npm publish ./dist/sc-clr-autocomplete
         env:
