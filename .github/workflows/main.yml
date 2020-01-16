@@ -30,5 +30,6 @@ jobs:
 #           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Publish Github Pages
         run: |
-          ng build --outputPath=dist/demo --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/ && ngh --dir=dist/demo --repo=https://${{secrets.GITHUB_PAGES_TOKEN}}@github.com/scenius-software/sc-clr-autocomplete.git
+					ng build --outputPath=dist/demo --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/
+					ng deploy --project demo --name="Scenius CI (GitHub)" --email="ci_github@scenius.nl" --message="Deploy latest master branch to GitHub Pages" --repo=https://{{secrets.GITHUB_PAGES_TOKEN}}@github.com/scenius-software/sc-clr-autocomplete.git
 
