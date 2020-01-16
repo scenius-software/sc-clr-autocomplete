@@ -23,6 +23,7 @@
     "@clr/icons": "^2.3.4",
     "@clr/ui": "^2.3.4",
     "@webcomponents/custom-elements": "^1.0.0",
+    "angular-cli-ghpages": "^0.6.2",
     "lodash-es": "^4.17.15",
     "ngx-highlightjs": "^4.0.2",
     "rxjs": "~6.4.0",
