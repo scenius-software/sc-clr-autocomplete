@@ -22,7 +22,6 @@ jobs:
           npm uninstall -g @angular/cli
           npm install -g @angular/cli
           npm install -g ngh
-
       - name: Build Library
         run: ng build --project sc-clr-autocomplete
       - name: Publish Library to NPM
