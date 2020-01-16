@@ -24,12 +24,12 @@ jobs:
           npm install -g ngh
       - name: Build Library
         run: ng build --project sc-clr-autocomplete
-      - name: Publish Library to NPM
-        run: npm publish ./dist/sc-clr-autocomplete
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+#       - name: Publish Library to NPM
+#         run: npm publish ./dist/sc-clr-autocomplete
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Publish Github Pages
         run: |
-          npm build --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/
+          ng build --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/
           ngh --dir=dist/demo --repo=https://${{secrets.GITHUB_PAGES_TOKEN}}@githubcom/scenius-software/sc-clr-autocomplete.git
 
