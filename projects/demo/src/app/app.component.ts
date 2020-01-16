@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/sc-clr-autocomplete.mode';
+import version from '../../../../version';
 
 @Component({
   selector: 'sc-clr-root',
@@ -8,6 +9,8 @@ import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/mode
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  version = version;
+
   constructor() {
   }
 }
