@@ -21,38 +21,10 @@ jobs:
           npm ci
           npm uninstall -g @angular/cli
           npm install -g @angular/cli
+          npm install -g ngh
           ng build --project sc-clr-autocomplete        
-  
-  publish-npm:
-    needs: build-library
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.4'
-          registry-url: https://registry.npmjs.org
-      - run: |
-          npm ci
-          npm uninstall -g @angular/cli
-          npm install -g @angular/cli
-          npm build --project sc-clr-autocomplete
           npm publish ./dist/sc-clr-autocomplete
+          npm build --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/
+          ngh --dir=dist/demo --repo=https://${{secrets.GITHUB_PAGES_TOKEN}}@githubcom/scenius-software/sc-clr-autocomplete.git
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-
-  deploy_pages:
-    needs: publish-npm
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.4
-          registry-url: https://registry.npmjs.org
-      - run: |
-          npm ci
-          npm uninstall -g @angular/cli
-          npm install -g @angular/cli
-          npm install -g ngh
-          npm build --prod --project demo --base-href https://scenius-software.github.io/sc-clr-autocomplete/ && ngh --dir=dist/demo --repo=https://${{secrets.GITHUB_PAGES_TOKEN}}@githubcom/scenius-software/sc-clr-autocomplete.git
