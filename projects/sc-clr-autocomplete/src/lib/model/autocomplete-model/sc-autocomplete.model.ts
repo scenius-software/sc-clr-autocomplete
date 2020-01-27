@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
+import { ClrAutocompleteItem } from '../autocomplete-result/clr-autocomplete.item';
 
 export abstract class ScAutocompleteModel<T> {
   public get ready() {

@@ -1,5 +1,5 @@
-import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
-import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
+import { ScAutocompleteModel } from '../model/autocomplete-model/sc-autocomplete.model';
+import { ClrAutocompleteItem } from '../model/autocomplete-result/clr-autocomplete.item';
 
 export class ScQueryHelpers {
   private constructor() {}

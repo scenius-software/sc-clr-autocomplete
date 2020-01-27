@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, EventEmitter, HostListener, Input } from '@angular/core';
-import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
-import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
+import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
+import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocomplete.item';
 
 @Component({
   selector: 'sc-clr-popover',

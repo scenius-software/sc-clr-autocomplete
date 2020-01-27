@@ -1,11 +1,9 @@
 import { Component, ComponentRef, forwardRef, HostListener, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
-// tslint:disable-next-line:max-line-length
-import { ScClrAutocompletePopoverComponent } from 'projects/sc-clr-autocomplete/src/lib/components/popover/sc-clr-autocomplete-popover.component';
-import { ScClrAutocompletePopoverService } from 'projects/sc-clr-autocomplete/src/lib/services/sc-clr-autocomplete-popover.service';
-import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
-
+import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
+import { ScClrAutocompletePopoverComponent } from '../popover/sc-clr-autocomplete-popover.component';
+import { ScClrAutocompletePopoverService } from '../../services/sc-clr-autocomplete-popover.service';
+import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocomplete.item';
 /**
  * The Scenius Clarity Autocomplete Component is a simple input variant that provides the ability for users
  * to input one of the pre-defined strings provided to the component.

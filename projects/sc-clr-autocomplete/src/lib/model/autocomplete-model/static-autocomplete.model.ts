@@ -1,6 +1,6 @@
-import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
-import { ClrAutocompleteItem } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/clr-autocomplete.item';
-import { ScQueryHelpers } from 'projects/sc-clr-autocomplete/src/lib/helpers/qeuery-helpers';
+import { ScAutocompleteModel } from './sc-autocomplete.model';
+import { ScQueryHelpers } from '../../helpers/qeuery-helpers';
+import { ClrAutocompleteItem } from '../autocomplete-result/clr-autocomplete.item';
 
 export class StaticAutocompleteModel<T> extends ScAutocompleteModel<T> {
 
