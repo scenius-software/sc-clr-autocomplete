@@ -27,7 +27,7 @@
         <clr-spinner *ngIf="!objectObservableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
         <span style="font-weight: bold">{{objectObservableDone ? 'Yes' : 'Not yet'}}</span></p>
       <form [formGroup]="objectForm" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="'Autocomplete'"
+        <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="'Autocomplete'" [resolveToItemInList]="true"
                              formControlName="autocomplete"></sc-clr-autocomplete>
       </form>
     </div>

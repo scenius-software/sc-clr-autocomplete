@@ -28,9 +28,10 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     '      autocomplete: \'hello\'\n' +
     '    });\n';
   exampleCodeStaticHtml = '<form clrForm autocomplete="off" [formGroup]="form">\n' +
-    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel"\n' +
+    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel" [resolveToItemInList]="true" \n' +
     '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
     '</form>\n';
+  // tslint:disable-next-line:max-line-length
   exampleCodeObjectTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'const observable = of(this._demoModel).pipe(delay(5000), finalize(() => this.observableDone = true));\n' +
     'this.observableModel = new ObservableAutocompleteModel<string>(observable);\n' +
@@ -105,5 +106,4 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     this.observableObjectModel = new ObservableAutocompleteModel<TestObject>(observable,  ((testObject) => `(${testObject.key}) ${testObject.value}`));
     this.patchObjectForm();
   }
-
 }

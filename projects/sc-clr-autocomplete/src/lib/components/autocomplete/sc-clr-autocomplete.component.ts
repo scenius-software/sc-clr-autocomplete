@@ -4,6 +4,7 @@ import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocompl
 import { ScClrAutocompletePopoverComponent } from '../popover/sc-clr-autocomplete-popover.component';
 import { ScClrAutocompletePopoverService } from '../../services/sc-clr-autocomplete-popover.service';
 import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocomplete.item';
+
 /**
  * The Scenius Clarity Autocomplete Component is a simple input variant that provides the ability for users
  * to input one of the pre-defined strings provided to the component.
@@ -39,12 +40,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * Sets the user input on the autocomplete box. This value will be used to query the search space.
    */
   set freeInputValue(newValue: string) {
-    if (newValue !== this._freeInputValue) {
-      this._freeInputValue = newValue;
-      if (this._viewInitialized) {
-        this.updatePopover();
-      }
-    }
+    this._freeInputValue = newValue;
   }
 
   get popoverOpen() {
@@ -113,11 +109,8 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    */
   writeValue(obj: any): void {
     if (obj) {
-      if (typeof(obj) === 'string') {
-        this.freeInputValue = obj as string;
-      } else {
-        this.freeInputValue = this.autocompleteModel.displaySelector(obj);
-      }
+      this.updateInput(this.autocompleteModel.displaySelector(obj), false);
+      this.selectedItem = obj;
     }
   }
 
@@ -194,18 +187,17 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * Event handler for the backing input onchange event.
    * @param input the new state of the input field.
    */
-  updateInput(input: string) {
-    if (this.readOnly) {
-      this._inputElementRef.nativeElement.value = '';
-      this.freeInputValue = '';
-      this.onChange(this.freeInputValue);
-      this.onTouched();
-      return;
+  updateInput(input: string, showPopup = true) {
+    if (this._inputElementRef) {
+      this._inputElementRef.nativeElement.value = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
     }
-    this._inputElementRef.nativeElement.value = input.replace(/^\s*/g, '');
-    this.freeInputValue = input.replace(/^\s*/g, '');
+    this.freeInputValue = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
+
     this.onChange(this.freeInputValue);
     this.onTouched();
+    if (this._viewInitialized && showPopup) {
+      this.updatePopover();
+    }
   }
 
   /**

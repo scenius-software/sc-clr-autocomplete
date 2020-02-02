@@ -54,7 +54,7 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
   /** The results of the last query. */
   searchResults: Array<ClrAutocompleteItem<T>> = [];
   /** The width of the pop-over. */
-  popoverWidth = 5;
+  popoverWidth = 0;
   /** The amount of pixels this popover is positioned from the left of the screen. */
   popoverOffsetLeft = 0;
   /** The amount of pixels this popover is positioned from the top of the screen. */
