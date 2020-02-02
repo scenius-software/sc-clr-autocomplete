@@ -19,7 +19,9 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
   });
 
   observableDone = false;
+  observableBusy = false;
   objectObservableDone = false;
+  objectObservableBusy = false;
   // tslint:disable-next-line:max-line-length
   exampleCodeStaticTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'const observable = of(this._demoModel).pipe(delay(5000), finalize(() => this.observableDone = true));\n' +
@@ -28,7 +30,7 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     '      autocomplete: \'hello\'\n' +
     '    });\n';
   exampleCodeStaticHtml = '<form clrForm autocomplete="off" [formGroup]="form">\n' +
-    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel" [resolveToItemInList]="true" \n' +
+    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel"\n' +
     '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
     '</form>\n';
   // tslint:disable-next-line:max-line-length
@@ -40,9 +42,9 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     '    key: 3,\n' +
     '    value: \'good\'\n' +
     '  }\n' +
-    '});\n'
+    '});\n';
   exampleCodeObjectHtml = '<form [formGroup]="objectForm" autocomplete="off" clrForm>\n' +
-    '    <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="\'Autocomplete\'"\n' +
+    '    <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="\'Autocomplete\'" [resolveToItemInList]="true" \n' +
     '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
     '</form>\n';
   private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
@@ -94,16 +96,29 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
   }
 
   resetObservableModelTest() {
-    this.observableDone = false;
-    const observable = of(this._demoModel).pipe(delay(5000), finalize(() => this.observableDone = true));
-    this.observableModel = new ObservableAutocompleteModel<string>(observable);
-    this.patchForm();
+    if (!this.observableBusy) {
+      this.observableBusy = true;
+      this.observableDone = false;
+      const observable = of(this._demoModel).pipe(delay(5000), finalize(() => {
+        this.observableDone = true;
+        this.observableBusy = false;
+      }));
+      this.observableModel = new ObservableAutocompleteModel<string>(observable);
+      this.patchForm();
+    }
   }
 
   resetObjectObservableModelTest() {
-    this.objectObservableDone = false;
-    const observable = of(this._demoObjectModel).pipe(delay(5000), finalize(() => this.objectObservableDone = true));
-    this.observableObjectModel = new ObservableAutocompleteModel<TestObject>(observable,  ((testObject) => `(${testObject.key}) ${testObject.value}`));
-    this.patchObjectForm();
+    if (!this.objectObservableBusy) {
+      this.objectObservableBusy = true;
+      this.objectObservableDone = false;
+      const observable = of(this._demoObjectModel).pipe(delay(5000), finalize(() => {
+        this.objectObservableDone = true;
+        this.objectObservableBusy = false;
+      }));
+      this.observableObjectModel = new ObservableAutocompleteModel<TestObject>(observable,
+        ((testObject) => `(${testObject.key}) ${testObject.value}`));
+      this.patchObjectForm();
+    }
   }
 }

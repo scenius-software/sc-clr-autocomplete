@@ -193,7 +193,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
     }
     this.freeInputValue = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
 
-    this.onChange(this.freeInputValue);
+    this.onChange(this.selectedItem);
     this.onTouched();
     if (this._viewInitialized && showPopup) {
       this.updatePopover();
