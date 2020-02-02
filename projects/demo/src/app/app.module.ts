@@ -14,6 +14,7 @@ import { ObjectOutputComponent } from 'projects/demo/src/app/examples/object-out
 import { StaticSelectComponent } from 'projects/demo/src/app/examples/static-input/select/static-select/static-select.component';
 import { ScClrAutocompleteModule } from 'projects/sc-clr-autocomplete/src/lib/sc-clr-autocomplete.module';
 import { InputResolveComponent } from 'projects/demo/src/app/examples/static-input/input-resolve/input-resolve.component';
+import { PreAppliedInputComponent } from './examples/pre-applied-input/pre-applied-input.component';
 
 /**
  * Import specific languages to avoid importing everything
@@ -36,6 +37,7 @@ export function getHighlightLanguages() {
     ObjectOutputComponent,
     StaticSelectComponent,
     InputResolveComponent,
+    PreAppliedInputComponent,
   ],
   imports: [
     BrowserModule,

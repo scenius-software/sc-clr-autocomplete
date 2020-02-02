@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+    Pre-applied / Patched input
+  </div>
+  <div class="card-block">
+    <div class="card-text">
+      <h4>Explanation</h4>
+      <p>
+        You can pre-apply input by using the <code>patch</code> function on the formgroup if you have already have
+        pre-existing data.
+      </p>
+      <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
+      <h4>Demo</h4>
+      <p>Callback done:
+        <clr-spinner *ngIf="!observableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
+        <span style="font-weight: bold">{{observableDone ? 'Yes' : 'Not yet'}}</span></p>
+      <form [formGroup]="form" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="observableModel" [labelText]="'Autocomplete'"
+                             formControlName="autocomplete"></sc-clr-autocomplete>
+      </form>
+
+      <h4>With Objects</h4>
+      <pre><code [highlight]="exampleCodeObjectTypescript" [lineNumbers]="true"></code></pre>
+      <pre><code [highlight]="exampleCodeObjectHtml" [lineNumbers]="true"></code></pre>
+      <p>Callback done:
+        <clr-spinner *ngIf="!objectObservableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
+        <span style="font-weight: bold">{{objectObservableDone ? 'Yes' : 'Not yet'}}</span></p>
+      <form [formGroup]="objectForm" autocomplete="off" clrForm>
+        <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="'Autocomplete'"
+                             formControlName="autocomplete"></sc-clr-autocomplete>
+      </form>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button (click)="sendForm()" class="btn btn-sm btn-link">Test Form</button>
+    <button (click)="sendObjectForm()" class="btn btn-sm btn-link">Test Object Form</button>
+    <button (click)="resetObservableModelTest()" class="btn btn-sm btn-link">Reset Observable</button>
+    <button (click)="resetObjectObservableModelTest()" class="btn btn-sm btn-link">Reset Object Observable</button>
+  </div>
+</div>

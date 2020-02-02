@@ -1,4 +1,4 @@
-import { Component, ComponentRef, forwardRef, HostListener, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, forwardRef, HostListener, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
 import { ScClrAutocompletePopoverComponent } from '../popover/sc-clr-autocomplete-popover.component';
@@ -20,7 +20,7 @@ import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocom
     }
   ]
 })
-export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
+export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, AfterViewInit {
   /**
    * Returns whether or not a valid value is selected from the auto-complete model.
    */
@@ -41,7 +41,9 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
   set freeInputValue(newValue: string) {
     if (newValue !== this._freeInputValue) {
       this._freeInputValue = newValue;
-      this.updatePopover();
+      if (this._viewInitialized) {
+        this.updatePopover();
+      }
     }
   }
 
@@ -79,7 +81,14 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
    */
   @ViewChild('label', {static: false}) private _labelRef;
 
+  private _viewInitialized = false;
+
   constructor(private _popoverService: ScClrAutocompletePopoverService) { }
+
+  ngAfterViewInit(): void {
+    this._viewInitialized = true;
+    this._inputElementRef.nativeElement.value = this._freeInputValue;
+  }
 
   // Required interfaces for form functionality.
   onChange: any = () => { };
@@ -104,7 +113,11 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor {
    */
   writeValue(obj: any): void {
     if (obj) {
-      this.freeInputValue = obj as string;
+      if (typeof(obj) === 'string') {
+        this.freeInputValue = obj as string;
+      } else {
+        this.freeInputValue = this.autocompleteModel.displaySelector(obj);
+      }
     }
   }
 
