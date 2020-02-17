@@ -93,12 +93,12 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
     }
   }
 
-  @HostListener('document:click') clickOut() {
+  @HostListener('document:click') clickOut(apiClose = false) {
     if (!this._ready) {
       return;
     }
     if (!this._clickInside) {
-      if (this.resolveToElementInList) {
+      if (this.resolveToElementInList && !apiClose) {
         // If we're supposed to always return a result from the list
         // get the closest one.
         this.resolveResult();
@@ -122,7 +122,9 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
    */
   clickItem(item: ClrAutocompleteItem<T>) {
     this.valueUpdated.emit(item);
-    setTimeout(() => this.clickOut(), 10);
+
+    // Close the popover
+    setTimeout(() => this.clickOut(true), 10);
   }
 
   /**
