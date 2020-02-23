@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, EventEmitter, HostListener, Input } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy } from '@angular/core';
 import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
 import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocomplete.item';
 
@@ -7,7 +7,7 @@ import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocom
   templateUrl: './sc-clr-autocomplete-popover.component.html',
   styleUrls: ['./sc-clr-autocomplete-popover.component.scss']
 })
-export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
+export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, OnDestroy {
   /**
    * Update the current search term & perform a query on the backing auto-complete model.
    * @param value The term to query for.
@@ -75,9 +75,10 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
 
   /** Indicates if the auto-complete component has finished all internal set-up tasks and is ready to be used. */
   private _ready = false;
+  private _destroyed = false;
 
   /** @param _selfReference Reference to ourselves. */
-  constructor(private _selfReference: ElementRef) {}
+  constructor(private _selfReference: ElementRef, private _changeDetector: ChangeDetectorRef) {}
 
   ngAfterViewChecked(): void {
     // In order to prevent immediately closing the popover, set the component to ready after a short delay.
@@ -154,5 +155,12 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked {
     this.popoverOffsetLeft = this._parentComponent.nativeElement.offsetLeft;
     this.popoverOffsetTop = (this._parentComponent.nativeElement.offsetTop + this._parentComponent.nativeElement.clientHeight);
     this.popoverWidth = this._parentComponent.nativeElement.clientWidth;
+    if (!this._destroyed) {
+      this._changeDetector.detectChanges();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._destroyed = true;
   }
 }
