@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ClarityModule } from '@clr/angular';
 import { ScClrAutocompleteComponent } from './components/autocomplete/sc-clr-autocomplete.component';
 import { ScClrAutocompletePopoverComponent } from './components/popover/sc-clr-autocomplete-popover.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,8 @@ import { ScClrAutocompletePopoverComponent } from './components/popover/sc-clr-a
   imports: [
     CommonModule,
     ClarityModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [ScClrAutocompletePopoverComponent],
 })

@@ -58,6 +58,9 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   @Output() selectedItem: T | undefined;
   @Input() autocompleteModel: ScAutocompleteModel<T>;
   @Input() labelText = '';
+  @Input() placeholderText = 'You Complete Me!';
+  @Input() layout = 'horizontal';
+
   /**
    * ComponentRef to the actual in-use auto-complete popover.
    */

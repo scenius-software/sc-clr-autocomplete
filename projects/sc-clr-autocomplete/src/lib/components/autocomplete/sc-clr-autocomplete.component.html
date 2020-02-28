@@ -9,10 +9,13 @@
   <div (click)="openPopover()" *ngIf="!popoverOpen" class="sc-clr-autocomplete-toggle-button">
     <clr-icon shape="circle-arrow"></clr-icon>
   </div>
-  <clr-input-container #popover>
-    <label #label>{{ labelText }}</label>
-    <input #inputElement (input)="updateInput($event.target.value)" (keydown.tab)="closePopover()" (mouseup)="onFocus()"
-           clrInput placeholder="You complete me!"/>
-  </clr-input-container>
+  <form clrForm [clrLayout]="layout" style="padding: 0px">
+    <clr-input-container #popover>
+      <label #label>{{ labelText }}</label>
+      <input #inputElement (input)="updateInput($event.target.value)" (keydown.tab)="closePopover()" (mouseup)="onFocus()"
+             clrInput [placeholder]="placeholderText"/>
+      <clr-control-error *clrIfError="'required'">Invalid</clr-control-error>
+    </clr-input-container>
+  </form>
 </div>
 
