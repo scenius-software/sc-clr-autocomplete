@@ -140,7 +140,6 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
    * recreate a input element
    */
   resolveResult() {
-    if (this._searchTerm.length === 0) { return undefined; }
     const selectedValue = this.searchResults.length > 0 ? this.searchResults[0] : undefined;
     if (selectedValue) {
       this._searchTerm = selectedValue.displayData;
