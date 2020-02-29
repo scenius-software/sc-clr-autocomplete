@@ -18,8 +18,8 @@
     "clarity"
   ],
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
+    "@angular/common": "^9.0.4",
+    "@angular/core": "^9.0.4",
     "@clr/core": "^3.0.0",
     "@clr/angular": "^3.0.0",
     "@clr/icons": "^3.0.0",

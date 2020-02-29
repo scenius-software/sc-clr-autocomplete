@@ -70,15 +70,15 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   /**
    * ViewContainerRef to the popover element used for showing the auto-complete pop-over container.
    */
-  @ViewChild('popover', {read: ViewContainerRef, static: false}) private _popoverElementRef;
+  @ViewChild('popover', { read: ViewContainerRef }) private _popoverElementRef;
   /**
    * A reference to our Clr Input element, used to calculate the position and width of the auto-complete pop-over.
    */
-  @ViewChild('inputElement', {static: false}) private _inputElementRef;
+  @ViewChild('inputElement') private _inputElementRef;
   /**
    * A reference to our Clr Label used to calculate the offset of the auto-complete pop-over.
    */
-  @ViewChild('label', {static: false}) private _labelRef;
+  @ViewChild('label') private _labelRef;
 
   private _viewInitialized = false;
 
