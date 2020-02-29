@@ -33,8 +33,8 @@ export class InputValidationComponent extends FormSender {
     this.form = new FormGroup({
       autocomplete: new FormControl(null, [Validators.required])
     });
-    // this.form.markAllAsTouched();
-    // this.form.updateValueAndValidity();
+    this.form.markAllAsTouched();
+    this.form.updateValueAndValidity();
   }
 
 }

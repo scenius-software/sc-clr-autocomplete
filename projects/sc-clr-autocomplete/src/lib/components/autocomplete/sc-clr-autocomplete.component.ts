@@ -135,13 +135,12 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
       if (this._popoverRef.instance.searchResults.length > 0) {
         this._popoverRef.instance.resolveResult();
       }
-      this._popoverRef.instance.clickOut();
     }
   }
 
   clearInput() {
     this.selectedItem = null;
-    this.updateInput('', false);
+    this.updateInput('', false, false);
     this._inputElementRef.nativeElement.focus();
   }
 
@@ -160,8 +159,10 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
 
     // When the pop-over gets closed, dump the instance we have.
     this._popoverRef.instance.closed.subscribe(() => {
-      this._popoverRef.destroy();
-      this._popoverRef = undefined;
+      if(this._popoverRef) {
+        this._popoverRef.destroy();
+        this._popoverRef = undefined;
+      }
     });
 
     // When the user selects a value in the auto-complete model, write it to our current value instead.
@@ -173,6 +174,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
       this.selectedItem = (value) ? value.data : null;
       this.onChange(this.selectedItem);
       this.onTouched();
+      this._popoverRef.instance.forceClose();
     });
 
     // Set the search-space (auto-complete model) to the one provided.
@@ -189,6 +191,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * @param input the new state of the input field.
    */
   async updateInput(input: string, showPopup = true, resolveInput = true) {
+    if(this._freeInputValue === input) return;
     if (this._inputElementRef) {
       this._inputElementRef.nativeElement.value = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
     }
@@ -225,7 +228,6 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   }
 
   async focusOut() {
-    this.onTouched();
     await this.updateInput(this._freeInputValue, false, false);
   }
 }

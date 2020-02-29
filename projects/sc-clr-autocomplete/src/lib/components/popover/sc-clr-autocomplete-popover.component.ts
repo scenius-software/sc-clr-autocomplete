@@ -162,4 +162,9 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
   ngOnDestroy(): void {
     this._destroyed = true;
   }
+
+  forceClose() {
+    this.closed.emit();
+  }
+
 }
