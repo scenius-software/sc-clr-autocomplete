@@ -14,7 +14,7 @@ export class InputResolveComponent extends FormSender {
     'this.model = new StaticAutocompleteModel(this._demoModel);\n';
   exampleCodeStaticHtml = '<form clrForm autocomplete="off" [formGroup]="form">\n' +
     '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="model" [resolveToItemInList]="true"\n' +
-    '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '        formControlName="autocomplete" [characterActivationTrigger]="0"></sc-clr-autocomplete>\n' +
     '</form>\n';
   private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
 
