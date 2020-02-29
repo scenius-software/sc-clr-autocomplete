@@ -27,7 +27,7 @@ jobs:
       - name: Set Version
         run: sed -i "s/\[ci-version\]/${GITHUB_REF##*/}-$BUILD_NUMBER/g" ./version.ts
       - name: Build Library
-        run: ng build --project sc-clr-autocomplete
+        run: ng build --project sc-clr-autocomplete --prod
       - name: Publish Library to NPM
         run: npm publish ./dist/sc-clr-autocomplete
         env:
