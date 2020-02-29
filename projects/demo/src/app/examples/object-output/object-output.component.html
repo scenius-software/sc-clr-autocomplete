@@ -6,18 +6,22 @@
     <div class="card-text">
       <h4>Explanation</h4>
       <p>Apart from strings, it's also possible to bind and display objects to the autocomplete component. You can
-      tell the autocomplete component how to render your component by providing a <code>displaySelector</code> which maps
-      your type <code>T</code> to <code>string</code></p>
+        tell the autocomplete component how to render your component by providing a <code>displaySelector</code> which
+        maps
+        your type <code>T</code> to <code>string</code></p>
       <p><strong>Note</strong> Equality comparison is currently done by the displayed string value of your type.
-      Ensure there are no duplicate entries in your model. A later update will provide a way to implement custom
-      equality operators.</p>
+        Ensure there are no duplicate entries in your model. A later update will provide a way to implement custom
+        equality operators.</p>
       <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
       <pre><code [highlight]="exampleCodeStaticHtml" [lineNumbers]="true"></code></pre>
 
       <h4>Demo</h4>
       <form [formGroup]="form" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="model" [labelText]="'Autocomplete'" [resolveToItemInList]="true"
-                             formControlName="autocomplete"></sc-clr-autocomplete>
+        <clr-control-container>
+          <label>Combobox</label>
+          <sc-clr-autocomplete clrControl [autocompleteModel]="model" [resolveToItemInList]="true"
+                               formControlName="autocomplete"></sc-clr-autocomplete>
+        </clr-control-container>
       </form>
     </div>
   </div>

@@ -12,10 +12,13 @@ export class StaticSelectComponent extends FormSender implements OnInit {
   model: ScAutocompleteModel<string>;
   exampleCodeStaticTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'this.model = new StaticAutocompleteModel(this._demoModel);';
-  exampleCodeStaticHtml = '<form [formGroup]="form" autocomplete="off" clrForm>\n' +
-    '    <sc-clr-autocomplete [autocompleteModel]="model" [characterActivationTrigger]="0" [labelText]="\'Autocomplete\'"\n' +
-    '        [readOnly]="true" formControlName="autocomplete"></sc-clr-autocomplete>\n' +
-    '</form>\n';
+  exampleCodeStaticHtml = '<clr-control-container>  \n' +
+    '    <label>Combobox</label>\n' +
+    '    <form [formGroup]="form" autocomplete="off" clrForm>\n' +
+    '        <sc-clr-autocomplete clrControl [autocompleteModel]="model" [characterActivationTrigger]="0" [labelText]="\'Autocomplete\'"\n' +
+    '            [readOnly]="true" formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '    </form>\n' +
+    '</clr-control-container>';
   private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
 
   constructor() {

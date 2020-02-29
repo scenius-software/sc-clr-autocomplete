@@ -140,7 +140,7 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
    * recreate a input element
    */
   resolveResult() {
-    const selectedValue = this.searchResults.length > 0 ? this.searchResults[0] : undefined;
+    const selectedValue = this._searchTerm === '' ? null : this.searchResults.length > 0 ? this.searchResults[0] : null;
     if (selectedValue) {
       this._searchTerm = selectedValue.displayData;
     }
@@ -162,4 +162,9 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
   ngOnDestroy(): void {
     this._destroyed = true;
   }
+
+  forceClose() {
+    this.closed.emit();
+  }
+
 }

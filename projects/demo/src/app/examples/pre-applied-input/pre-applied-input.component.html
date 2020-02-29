@@ -16,8 +16,11 @@
         <clr-spinner *ngIf="!observableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
         <span style="font-weight: bold">{{observableDone ? 'Yes' : 'Not yet'}}</span></p>
       <form [formGroup]="form" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="observableModel" [labelText]="'Autocomplete'"
+        <clr-control-container>
+          <label>Pre-applied</label>
+        <sc-clr-autocomplete clrControl [autocompleteModel]="observableModel"
                              formControlName="autocomplete"></sc-clr-autocomplete>
+        </clr-control-container>
       </form>
 
       <h4>With Objects</h4>
@@ -27,8 +30,11 @@
         <clr-spinner *ngIf="!objectObservableDone" clrInline style="margin-right: 0.5em"></clr-spinner>
         <span style="font-weight: bold">{{objectObservableDone ? 'Yes' : 'Not yet'}}</span></p>
       <form [formGroup]="objectForm" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="'Autocomplete'" [resolveToItemInList]="true"
+        <clr-control-container>
+          <label>Objects</label>
+        <sc-clr-autocomplete clrControl [autocompleteModel]="observableObjectModel" [resolveToItemInList]="true"
                              formControlName="autocomplete"></sc-clr-autocomplete>
+        </clr-control-container>
       </form>
     </div>
   </div>

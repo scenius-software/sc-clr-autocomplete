@@ -57,9 +57,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   @Input() resolveToItemInList = false;
   @Output() selectedItem: T | undefined;
   @Input() autocompleteModel: ScAutocompleteModel<T>;
-  @Input() labelText = '';
   @Input() placeholderText = 'You Complete Me!';
-  @Input() layout = 'horizontal';
 
   /**
    * ComponentRef to the actual in-use auto-complete popover.
@@ -70,15 +68,15 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   /**
    * ViewContainerRef to the popover element used for showing the auto-complete pop-over container.
    */
-  @ViewChild('popover', {read: ViewContainerRef, static: false}) private _popoverElementRef;
+  @ViewChild('popover', {read: ViewContainerRef}) private _popoverElementRef;
   /**
    * A reference to our Clr Input element, used to calculate the position and width of the auto-complete pop-over.
    */
-  @ViewChild('inputElement', {static: false}) private _inputElementRef;
+  @ViewChild('inputElement') private _inputElementRef;
   /**
    * A reference to our Clr Label used to calculate the offset of the auto-complete pop-over.
    */
-  @ViewChild('label', {static: false}) private _labelRef;
+  @ViewChild('label') private _labelRef;
 
   private _viewInitialized = false;
 
@@ -137,14 +135,13 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
       if (this._popoverRef.instance.searchResults.length > 0) {
         this._popoverRef.instance.resolveResult();
       }
-      this._popoverRef.instance.clickOut();
     }
   }
 
   clearInput() {
-    this.updateInput('');
+    this.selectedItem = null;
+    this.updateInput('', false, false);
     this._inputElementRef.nativeElement.focus();
-    this.openPopover();
   }
 
   closePopover() {
@@ -162,8 +159,10 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
 
     // When the pop-over gets closed, dump the instance we have.
     this._popoverRef.instance.closed.subscribe(() => {
-      this._popoverRef.destroy();
-      this._popoverRef = undefined;
+      if(this._popoverRef) {
+        this._popoverRef.destroy();
+        this._popoverRef = undefined;
+      }
     });
 
     // When the user selects a value in the auto-complete model, write it to our current value instead.
@@ -172,9 +171,10 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
       const displayData = (value) ? value.displayData : '';
       this._inputElementRef.nativeElement.value = displayData;
       this._freeInputValue = displayData;
-      this.selectedItem = (value) ? value.data : undefined;
+      this.selectedItem = (value) ? value.data : null;
       this.onChange(this.selectedItem);
       this.onTouched();
+      this._popoverRef.instance.forceClose();
     });
 
     // Set the search-space (auto-complete model) to the one provided.
@@ -190,11 +190,17 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * Event handler for the backing input onchange event.
    * @param input the new state of the input field.
    */
-  updateInput(input: string, showPopup = true) {
+  async updateInput(input: string, showPopup = true, resolveInput = true) {
+    if(this._freeInputValue === input) return;
     if (this._inputElementRef) {
       this._inputElementRef.nativeElement.value = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
     }
     this.freeInputValue = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
+    if (!this.resolveToItemInList || this.freeInputValue === '' && resolveInput) {
+      const item = await this.autocompleteModel.query(this.freeInputValue);
+      const directMatches = item.filter(x => x.displayData === this.freeInputValue);
+      this.selectedItem = directMatches.length > 0 ? directMatches[0].data : null;
+    }
 
     this.onChange(this.selectedItem);
     this.onTouched();
@@ -219,5 +225,9 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
       // If we have a reference to our pop-over, update its search-term.
       this._popoverRef.instance.searchTerm = this._freeInputValue;
     }
+  }
+
+  async focusOut() {
+    await this.updateInput(this._freeInputValue, false, false);
   }
 }
