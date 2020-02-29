@@ -4,7 +4,6 @@
 }
 
 input {
-  width: 100%;
 }
 
 .sc-clr-autocomplete-toggle-button {
@@ -30,3 +29,8 @@ input {
     color: #C92100;
   }
 }
+
+.clr-input {
+  padding-left: 0 !important;
+}
+

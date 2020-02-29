@@ -7,9 +7,12 @@
       <h4>Explanation</h4>
       <p>Demonstrates the ability to use a URL to parse an array of items from a REST API. In this example,
         the call is used: <a href="https://restcountries.eu/rest/v2/all" target="_blank">https://restcountries.eu/rest/v2/all</a>.
-        For this we will make use of the <code>HttpAutocompleteModel</code>, which we provide with a <code>HttpClient</code>
-        and an <code>url</code> to make a request on our behalf. We also provide a custom <code>displaySelector</code> in order
-        to tell the component how to render the returned objects. This model will show a loading spinner while the HTTP call
+        For this we will make use of the <code>HttpAutocompleteModel</code>, which we provide with a
+        <code>HttpClient</code>
+        and an <code>url</code> to make a request on our behalf. We also provide a custom <code>displaySelector</code>
+        in order
+        to tell the component how to render the returned objects. This model will show a loading spinner while the HTTP
+        call
         has not yet resolved.
       </p>
       <pre><code [highlight]="exampleCodeStaticTypescript" [lineNumbers]="true"></code></pre>
@@ -19,8 +22,11 @@
         <clr-spinner *ngIf="!modelReady" clrInline style="margin-right: 0.5em"></clr-spinner>
         <span style="font-weight: bold">{{modelReady ? 'Yes' : 'Not yet'}}</span></p>
       <form [formGroup]="form" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="_httpModel" [labelText]="'Autocomplete'"
-                             [resolveToItemInList]="true" formControlName="autocomplete"></sc-clr-autocomplete>
+        <clr-control-container>
+          <label>Combobox</label>
+          <sc-clr-autocomplete clrControl [autocompleteModel]="_httpModel"
+                               [resolveToItemInList]="true" formControlName="autocomplete"></sc-clr-autocomplete>
+        </clr-control-container>
       </form>
     </div>
   </div>

@@ -32,10 +32,13 @@ export class ObjectOutputComponent extends FormSender implements OnInit {
     '  ];\n' +
     'this.model = new StaticAutocompleteModel(this._demoModel,\n' +
     '    ((testObject) => `(${testObject.key}) ${testObject.value}`));\n';
-  exampleCodeStaticHtml = '<form [formGroup]="form" autocomplete="off" clrForm>\n' +
-    '    <sc-clr-autocomplete [autocompleteModel]="model" [labelText]="\'Autocomplete\'" [resolveToItemInList]="true"\n' +
-    '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
-    '</form>\n';
+  exampleCodeStaticHtml = '<clr-control-container>  \n' +
+    '    <label>Combobox</label>\n' +
+    '    <form [formGroup]="form" autocomplete="off" clrForm>\n' +
+    '        <sc-clr-autocomplete clrControl [autocompleteModel]="model" [labelText]="\'Autocomplete\'" [resolveToItemInList]="true"\n' +
+    '            formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '    </form>\n' +
+    '</clr-control-container>';
   private _demoModel: Array<TestObject> = [
     {
       key: '1',

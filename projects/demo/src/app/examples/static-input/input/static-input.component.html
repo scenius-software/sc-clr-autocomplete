@@ -18,8 +18,11 @@
 
       <h4>Demo</h4>
       <form [formGroup]="form" autocomplete="off" clrForm>
-        <sc-clr-autocomplete [autocompleteModel]="model" [labelText]="'Autocomplete'"
+        <clr-control-container>
+          <label>Static Autocomplete</label>
+          <sc-clr-autocomplete clrControl [autocompleteModel]="model"
                              formControlName="autocomplete"></sc-clr-autocomplete>
+        </clr-control-container>
       </form>
     </div>
   </div>

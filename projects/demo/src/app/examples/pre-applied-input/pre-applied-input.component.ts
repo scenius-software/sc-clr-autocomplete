@@ -29,10 +29,13 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     '    this.form.patchValue({\n' +
     '      autocomplete: \'hello\'\n' +
     '    });\n';
-  exampleCodeStaticHtml = '<form clrForm autocomplete="off" [formGroup]="form">\n' +
-    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel"\n' +
-    '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
-    '</form>\n';
+  exampleCodeStaticHtml = '<clr-control-container>  \n' +
+    '    <label>Combobox</label>\n' +
+    '    <form clrForm autocomplete="off" [formGroup]="form">\n' +
+    '        <sc-clr-autocomplete clrControl [labelText]="\'Autocomplete\'" [autocompleteModel]="observableModel"\n' +
+    '            formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '    </form>\n' +
+    '</clr-control-container>';
   // tslint:disable-next-line:max-line-length
   exampleCodeObjectTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'const observable = of(this._demoModel).pipe(delay(5000), finalize(() => this.observableDone = true));\n' +
@@ -43,10 +46,13 @@ export class PreAppliedInputComponent extends FormSender implements OnInit {
     '    value: \'good\'\n' +
     '  }\n' +
     '});\n';
-  exampleCodeObjectHtml = '<form [formGroup]="objectForm" autocomplete="off" clrForm>\n' +
-    '    <sc-clr-autocomplete [autocompleteModel]="observableObjectModel" [labelText]="\'Autocomplete\'" [resolveToItemInList]="true" \n' +
-    '        formControlName="autocomplete"></sc-clr-autocomplete>\n' +
-    '</form>\n';
+  exampleCodeObjectHtml = '<clr-control-container>  \n' +
+    '    <label>Combobox</label>\n' +
+    '    <form [formGroup]="objectForm" autocomplete="off" clrForm>\n' +
+    '        <sc-clr-autocomplete clrControl [autocompleteModel]="observableObjectModel" [labelText]="\'Autocomplete\'" [resolveToItemInList]="true" \n' +
+    '            formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '    </form>\n' +
+    '</clr-control-container>';
   private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
   private _demoObjectModel: Array<TestObject> = [
     {

@@ -12,10 +12,13 @@ export class InputResolveComponent extends FormSender {
   model: ScAutocompleteModel<string>;
   exampleCodeStaticTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'this.model = new StaticAutocompleteModel(this._demoModel);\n';
-  exampleCodeStaticHtml = '<form clrForm autocomplete="off" [formGroup]="form">\n' +
-    '    <sc-clr-autocomplete [labelText]="\'Autocomplete\'" [autocompleteModel]="model" [resolveToItemInList]="true"\n' +
-    '        formControlName="autocomplete" [characterActivationTrigger]="0"></sc-clr-autocomplete>\n' +
-    '</form>\n';
+  exampleCodeStaticHtml = '<clr-control-container>\n' +
+    '    <label>Autocomplete</label>' +
+    '    <form clrForm autocomplete="off" [formGroup]="form">\n' +
+    '        <sc-clr-autocomplete clrControl [labelText]="\'Autocomplete\'" [autocompleteModel]="model" [resolveToItemInList]="true"\n' +
+    '            formControlName="autocomplete"></sc-clr-autocomplete>\n' +
+    '    </form>\n' +
+    '</clr-control-container>';
   private _demoModel = ['Hello', 'world', 'this', 'is', 'an', 'auto complete', 'component', 'for', 'clarity'];
 
   constructor() {

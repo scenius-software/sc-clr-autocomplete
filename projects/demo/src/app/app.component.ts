@@ -18,7 +18,7 @@ export class AppComponent {
 export abstract class FormSender {
   autocompleteModes = ScClrAutocompleteMode;
   form = new FormGroup({
-    autocomplete: new FormControl('', [Validators.required])
+    autocomplete: new FormControl('')
   });
 
   sendForm() {
