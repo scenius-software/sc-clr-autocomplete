@@ -190,7 +190,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * Event handler for the backing input onchange event.
    * @param input the new state of the input field.
    */
-  async updateInput(input: string, showPopup = true, resolveInput = true) {
+  async updateInput(input: string = '', showPopup = true, resolveInput = true) {
     if(this._freeInputValue === input) return;
     if (this._inputElementRef) {
       this._inputElementRef.nativeElement.value = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
