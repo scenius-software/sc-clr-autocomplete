@@ -1,5 +1,9 @@
 # Changelog
 
+#### v0.13
+
+- Improved testability by moving more timers to run outside Angular.
+
 #### v0.12
 
 - Fixed a small bug when applying empty inputs.
