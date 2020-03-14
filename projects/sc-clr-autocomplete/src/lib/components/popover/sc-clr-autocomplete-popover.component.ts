@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy } from '@angular/core';
 import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
 import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocomplete.item';
 
@@ -78,14 +78,18 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
   private _destroyed = false;
 
   /** @param _selfReference Reference to ourselves. */
-  constructor(private _selfReference: ElementRef, private _changeDetector: ChangeDetectorRef) {}
+  constructor(private _selfReference: ElementRef, private _changeDetector: ChangeDetectorRef, private _zone: NgZone) {}
 
   ngAfterViewChecked(): void {
     // In order to prevent immediately closing the popover, set the component to ready after a short delay.
-    setTimeout(() => {
-      this._ready = true;
-      this.reflowPopover();
-    }, 10);
+    this._zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this._zone.run(() => {
+          this._ready = true;
+          this.reflowPopover();
+        });
+      }, 10);
+    });
   }
 
   @HostListener('click', ['$event.target']) onClick(event) {
@@ -125,7 +129,11 @@ export class ScClrAutocompletePopoverComponent<T> implements AfterViewChecked, O
     this.valueUpdated.emit(item);
 
     // Close the popover
-    setTimeout(() => this.clickOut(true), 10);
+    this._zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this._zone.run(() => { this.clickOut(true); });
+      }, 10);
+    });
   }
 
   /**
