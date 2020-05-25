@@ -1,5 +1,9 @@
 # Changelog
 
+#### 0.15
+
+- Improved pre-applying inputs not registering.
+
 #### v0.13
 
 - Improved testability by moving more timers to run outside Angular.

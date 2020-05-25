@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ComponentRef, forwardRef, HostListener, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit, Component, ComponentRef, forwardRef, HostListener, Input, Output, ViewChild, ViewContainerRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ScAutocompleteModel } from '../../model/autocomplete-model/sc-autocomplete.model';
 import { ScClrAutocompletePopoverComponent } from '../popover/sc-clr-autocomplete-popover.component';
@@ -12,7 +14,7 @@ import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocom
 @Component({
   selector: 'sc-clr-autocomplete',
   templateUrl: './sc-clr-autocomplete.component.html',
-  styleUrls: ['./sc-clr-autocomplete.component.scss'],
+  styleUrls: [ './sc-clr-autocomplete.component.scss' ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -68,7 +70,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   /**
    * ViewContainerRef to the popover element used for showing the auto-complete pop-over container.
    */
-  @ViewChild('popover', {read: ViewContainerRef}) private _popoverElementRef;
+  @ViewChild('popover', { read: ViewContainerRef }) private _popoverElementRef;
   /**
    * A reference to our Clr Input element, used to calculate the position and width of the auto-complete pop-over.
    */
@@ -80,7 +82,8 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
 
   private _viewInitialized = false;
 
-  constructor(private _popoverService: ScClrAutocompletePopoverService) { }
+  constructor(private _popoverService: ScClrAutocompletePopoverService) {
+  }
 
   ngAfterViewInit(): void {
     this._viewInitialized = true;
@@ -88,14 +91,17 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   }
 
   // Required interfaces for form functionality.
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   /**
    * OnChange event handler for Reactive Forms functionality.
    */
   registerOnChange(fn: any): void {
     this.onChange = fn;
+    this.onChange(this.selectedItem);
   }
 
   /**
@@ -103,6 +109,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+    this.onChange(this.selectedItem);
   }
 
   /**
@@ -112,6 +119,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
     if (obj) {
       this.updateInput(this.autocompleteModel.displaySelector(obj), false);
       this.selectedItem = obj;
+      this.onChange(this.selectedItem);
     }
   }
 
@@ -123,14 +131,14 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
   }
 
   /** When user presses escape, close the popover */
-  @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
+  @HostListener('document:keydown.escape', [ '$event' ]) onEscape(event: KeyboardEvent) {
     if (this._popoverRef) {
       this.closePopover();
     }
   }
 
   /** When user presses escape, resolve the popover */
-  @HostListener('document:keydown.enter', ['$event']) onEnter(event: KeyboardEvent) {
+  @HostListener('document:keydown.enter', [ '$event' ]) onEnter(event: KeyboardEvent) {
     if (this._popoverRef) {
       if (this._popoverRef.instance.searchResults.length > 0) {
         this._popoverRef.instance.resolveResult();
@@ -159,7 +167,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
 
     // When the pop-over gets closed, dump the instance we have.
     this._popoverRef.instance.closed.subscribe(() => {
-      if(this._popoverRef) {
+      if (this._popoverRef) {
         this._popoverRef.destroy();
         this._popoverRef = undefined;
       }
@@ -191,7 +199,7 @@ export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, Afte
    * @param input the new state of the input field.
    */
   async updateInput(input: string = '', showPopup = true, resolveInput = true) {
-    if(this._freeInputValue === input) return;
+    if (this._freeInputValue === input) return;
     if (this._inputElementRef) {
       this._inputElementRef.nativeElement.value = (this.readOnly) ? '' : input.replace(/^\s*/g, '');
     }
