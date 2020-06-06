@@ -132,13 +132,13 @@
           "options": {
             "tsConfig": "projects/sc-clr-autocomplete/tsconfig.lib.json",
             "project": "projects/sc-clr-autocomplete/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/sc-clr-autocomplete/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -162,5 +162,8 @@
       }
     }
   },
-  "defaultProject": "demo"
+  "defaultProject": "demo",
+  "cli": {
+    "analytics": "26d1f2b4-c87b-48ea-8859-d78826a6f280"
+  }
 }
