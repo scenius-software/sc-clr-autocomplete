@@ -7,19 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    ScClrAutocompleteComponent,
-    ScClrAutocompletePopoverComponent
-  ],
-  exports: [
-    ScClrAutocompleteComponent,
-  ],
-  imports: [
-    CommonModule,
-    ClarityModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  entryComponents: [ScClrAutocompletePopoverComponent],
+    declarations: [
+        ScClrAutocompleteComponent,
+        ScClrAutocompletePopoverComponent
+    ],
+    exports: [
+        ScClrAutocompleteComponent,
+    ],
+    imports: [
+        CommonModule,
+        ClarityModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ]
 })
 export class ScClrAutocompleteModule {}

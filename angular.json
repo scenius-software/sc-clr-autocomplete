@@ -49,7 +49,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -103,18 +102,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {}
@@ -145,18 +132,6 @@
             "main": "projects/sc-clr-autocomplete/src/test.ts",
             "tsConfig": "projects/sc-clr-autocomplete/tsconfig.spec.json",
             "karmaConfig": "projects/sc-clr-autocomplete/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/sc-clr-autocomplete/tsconfig.lib.json",
-              "projects/sc-clr-autocomplete/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
