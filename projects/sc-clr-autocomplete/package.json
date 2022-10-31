@@ -18,12 +18,15 @@
     "clarity"
   ],
   "peerDependencies": {
-    "@angular/common": "^9.0.4",
-    "@angular/core": "^9.0.4",
-    "@clr/core": "^3.0.0",
-    "@clr/angular": "^3.0.0",
-    "@clr/icons": "^3.0.0",
-    "@clr/ui": "^3.0.0"
+    "@angular/common": "^10.2.5",
+    "@angular/core": "^10.2.5",
+    "@clr/core": "^4.0.15",
+    "@clr/angular": "^4.0.16",
+    "@clr/icons": "^4.0.16",
+    "@clr/ui": "^4.0.16"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "license": "MIT"
 }
