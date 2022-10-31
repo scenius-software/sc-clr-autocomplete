@@ -30,38 +30,37 @@ export function getHighlightLanguages() {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StaticInputComponent,
-    HttpInputComponent,
-    ObservableInputComponent,
-    ObjectOutputComponent,
-    StaticSelectComponent,
-    InputResolveComponent,
-    PreAppliedInputComponent,
-    InputValidationComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ClarityModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HighlightModule,
-    ScClrAutocompleteModule
-  ],
-  providers: [
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        lineNumbers: true,
-        languages: getHighlightLanguages()
-      } as HighlightOptions
-    }
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: []
+    declarations: [
+        AppComponent,
+        StaticInputComponent,
+        HttpInputComponent,
+        ObservableInputComponent,
+        ObjectOutputComponent,
+        StaticSelectComponent,
+        InputResolveComponent,
+        PreAppliedInputComponent,
+        InputValidationComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ClarityModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HighlightModule,
+        ScClrAutocompleteModule
+    ],
+    providers: [
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+                lineNumbers: true,
+                languages: getHighlightLanguages()
+            } as HighlightOptions
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

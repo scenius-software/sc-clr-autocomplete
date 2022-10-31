@@ -1,6 +1,6 @@
 {
   "name": "sc-clr-autocomplete",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Autocomplete Component for Clarity",
   "author": "Scenius",
   "repository": {
@@ -18,12 +18,15 @@
     "clarity"
   ],
   "peerDependencies": {
-    "@angular/common": "^9.0.4",
-    "@angular/core": "^9.0.4",
-    "@clr/core": "^3.0.0",
-    "@clr/angular": "^3.0.0",
-    "@clr/icons": "^3.0.0",
-    "@clr/ui": "^3.0.0"
+    "@angular/common": "v13-lts",
+    "@angular/core": "v13-lts",
+    "@cds/core": "^6.2.0",
+    "@clr/angular": "^13.9.0",
+    "@clr/icons": "^13.0.2",
+    "@clr/ui": "^13.9.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "license": "MIT"
 }
