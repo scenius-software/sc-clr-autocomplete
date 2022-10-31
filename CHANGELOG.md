@@ -1,5 +1,10 @@
 # Changelog
 
+#### 0.17
+
+- Bumped to Angular 13
+- Use Clarity for Angular 13
+
 #### 0.15
 
 - Improved pre-applying inputs not registering.

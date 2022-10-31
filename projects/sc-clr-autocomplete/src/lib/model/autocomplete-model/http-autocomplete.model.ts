@@ -29,12 +29,12 @@ export class HttpAutocompleteModel<T> extends ScAutocompleteModel<T> {
         this._model = result;
         this.ready = true;
         this.onReadyChanged.emit(true);
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
           resolve();
         });
       });
     } else {
-      return new Promise(resolve => {
+      return new Promise<void>(resolve => {
         resolve();
       });
     }

@@ -27,6 +27,6 @@ export abstract class ScAutocompleteModel<T> {
 
   protected constructor(protected _model: Array<T>, public displaySelector: ((T1: T) => string) = ((T1) => T1.toString())) {}
 
-  abstract async query(searchParam: string): Promise<Array<ClrAutocompleteItem<T>>>;
+  abstract query(searchParam: string): Promise<Array<ClrAutocompleteItem<T>>>;
 }
 
