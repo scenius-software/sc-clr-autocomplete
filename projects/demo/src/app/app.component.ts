@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/sc-clr-autocomplete.mode';
 import version from '../../../../version';
 
@@ -17,8 +17,8 @@ export class AppComponent {
 
 export abstract class FormSender {
   autocompleteModes = ScClrAutocompleteMode;
-  form = new FormGroup({
-    autocomplete: new FormControl('')
+  form = new UntypedFormGroup({
+    autocomplete: new UntypedFormControl('')
   });
 
   sendForm() {
