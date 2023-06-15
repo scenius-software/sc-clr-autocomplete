@@ -116,6 +116,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
+          "defaultConfiguration": "production",
           "options": {
             "tsConfig": "projects/sc-clr-autocomplete/tsconfig.lib.json",
             "project": "projects/sc-clr-autocomplete/ng-package.json"
