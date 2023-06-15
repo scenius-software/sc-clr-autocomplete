@@ -18,12 +18,12 @@
     "clarity"
   ],
   "peerDependencies": {
-    "@angular/common": "v13-lts",
-    "@angular/core": "v13-lts",
-    "@cds/core": "^6.2.0",
-    "@clr/angular": "^13.9.0",
+    "@angular/common": "~16.1.1",
+    "@angular/core": "~16.1.1",
+    "@cds/core": "^6.4.3",
+    "@clr/angular": "^15.5.1",
     "@clr/icons": "^13.0.2",
-    "@clr/ui": "^13.9.0"
+    "@clr/ui": "^15.5.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"

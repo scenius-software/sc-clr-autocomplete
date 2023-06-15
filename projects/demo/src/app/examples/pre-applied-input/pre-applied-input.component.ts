@@ -3,7 +3,7 @@ import { ObservableAutocompleteModel } from 'projects/sc-clr-autocomplete/src/li
 import { of } from 'rxjs';
 import { delay, finalize } from 'rxjs/operators';
 import { FormSender } from 'projects/demo/src/app/app.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { TestObject } from 'projects/demo/src/app/examples/object-output/object-output.component';
 
 @Component({
@@ -14,8 +14,8 @@ import { TestObject } from 'projects/demo/src/app/examples/object-output/object-
 export class PreAppliedInputComponent extends FormSender implements OnInit {
   observableModel: ObservableAutocompleteModel<string>;
   observableObjectModel: ObservableAutocompleteModel<TestObject>;
-  objectForm = new FormGroup({
-    autocomplete: new FormControl('', [Validators.required])
+  objectForm = new UntypedFormGroup({
+    autocomplete: new UntypedFormControl('', [Validators.required])
   });
 
   observableDone = false;

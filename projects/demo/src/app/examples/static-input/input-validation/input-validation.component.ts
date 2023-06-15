@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
 import { StaticAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/static-autocomplete.model';
 import { FormSender } from 'projects/demo/src/app/app.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sc-clr-input-validation',
@@ -30,8 +30,8 @@ export class InputValidationComponent extends FormSender {
   constructor() {
     super();
     this.model = new StaticAutocompleteModel(this._demoModel);
-    this.form = new FormGroup({
-      autocomplete: new FormControl(null, [Validators.required])
+    this.form = new UntypedFormGroup({
+      autocomplete: new UntypedFormControl(null, [Validators.required])
     });
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
