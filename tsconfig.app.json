@@ -14,5 +14,9 @@
   "exclude": [
     "projects/demo/src/test.ts",
     "projects/demo/src/**/*.spec.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "compilationMode": "full"
+  }
 }

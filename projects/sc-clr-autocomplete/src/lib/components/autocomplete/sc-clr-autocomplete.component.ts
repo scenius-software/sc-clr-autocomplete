@@ -25,7 +25,7 @@ import { ClrAutocompleteItem } from '../../model/autocomplete-result/clr-autocom
 })
 export class ScClrAutocompleteComponent<T> implements ControlValueAccessor, AfterViewInit {
   /**
-   * Returns whether or not a valid value is selected from the auto-complete model.
+   * Returns whether a valid value is selected from the auto-complete model.
    */
   get elementIsSelected(): boolean {
     return this.selectedItem !== undefined;

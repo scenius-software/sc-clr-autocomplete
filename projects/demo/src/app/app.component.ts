@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ScClrAutocompleteMode } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-result/sc-clr-autocomplete.mode';
 import version from '../../../../version';
 
@@ -24,5 +24,4 @@ export abstract class FormSender {
   sendForm() {
     alert(JSON.stringify(this.form.value));
   }
-
 }

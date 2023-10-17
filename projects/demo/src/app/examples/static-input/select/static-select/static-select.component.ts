@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormSender } from 'projects/demo/src/app/app.component';
 import { ScAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/sc-autocomplete.model';
 import { StaticAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/model/autocomplete-model/static-autocomplete.model';
@@ -8,7 +8,7 @@ import { StaticAutocompleteModel } from 'projects/sc-clr-autocomplete/src/lib/mo
   templateUrl: './static-select.component.html',
   styleUrls: ['./static-select.component.scss']
 })
-export class StaticSelectComponent extends FormSender implements OnInit {
+export class StaticSelectComponent extends FormSender{
   model: ScAutocompleteModel<string>;
   exampleCodeStaticTypescript = 'private _demoModel = [ \'Hello\', \'world\', \'this\', \'is\', \'an\', \'auto complete\', \'component\', \'for\', \'clarity\' ];\n' +
     'this.model = new StaticAutocompleteModel(this._demoModel);';
@@ -25,8 +25,4 @@ export class StaticSelectComponent extends FormSender implements OnInit {
     super();
     this.model = new StaticAutocompleteModel(this._demoModel);
   }
-
-  ngOnInit() {
-  }
-
 }

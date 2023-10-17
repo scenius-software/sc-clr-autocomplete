@@ -2,8 +2,6 @@ import { ScAutocompleteModel } from '../model/autocomplete-model/sc-autocomplete
 import { ClrAutocompleteItem } from '../model/autocomplete-result/clr-autocomplete.item';
 
 export class ScQueryHelpers {
-  private constructor() {}
-
   static queryModel<T>(model: ScAutocompleteModel<any>, queryTerm: string): Array<ClrAutocompleteItem<T>> {
     const searchExp = queryTerm.length > 0 ? new RegExp('^(.*)(' + ScQueryHelpers.escape(queryTerm) + ')(.*)$', 'i')
       : new RegExp('^(.*)$', 'i');
@@ -22,7 +20,7 @@ export class ScQueryHelpers {
   }
 
   /**
-   * Lets not have the user input any values that could be parsed as regex structures.
+   * Let's not have the user input any values that could be parsed as regex structures.
    * @param val input to sanitize.
    */
   private static escape(val: string): string {
