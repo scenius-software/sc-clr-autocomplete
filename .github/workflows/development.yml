@@ -21,7 +21,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: |
-          npm ci
+          npm ci --legacy-peer-deps
           npm uninstall -g @angular/cli
           npm install -g @angular/cli
       - name: Set Version
