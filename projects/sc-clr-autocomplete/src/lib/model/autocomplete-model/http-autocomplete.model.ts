@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ClrAutocompleteItem } from '../autocomplete-result/clr-autocomplete.item';
-import { ScQueryHelpers } from '../../helpers/qeuery-helpers';
+import { ScQueryHelpers } from '../../helpers/sc-query-helpers';
 import { ScAutocompleteModel } from './sc-autocomplete.model';
 
 export class HttpAutocompleteModel<T> extends ScAutocompleteModel<T> {

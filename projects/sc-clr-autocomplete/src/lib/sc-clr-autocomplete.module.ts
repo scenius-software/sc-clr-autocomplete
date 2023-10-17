@@ -5,7 +5,6 @@ import { ScClrAutocompleteComponent } from './components/autocomplete/sc-clr-aut
 import { ScClrAutocompletePopoverComponent } from './components/popover/sc-clr-autocomplete-popover.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
     declarations: [
         ScClrAutocompleteComponent,
